@@ -1,0 +1,29 @@
+<div class="container">
+    <h1 class="text-center my-5 ff-cursive">S3 File Upload</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="form-group mb-2">
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-darkgrey-ae fs-5 fw-normal rounded-pill btn-block color-yellow mx-auto w-50">
+                    <img src="./assets/images/add-photo.svg" alt="Add" height="18" class="me-2 mb-1">
+                    Add Photos/ Videos
+                  </button>
+                  <input type="file" (change)="fileSelectEvent($event)" onclick="value = null"
+                  accept="image/png, image/jpg, image/jpeg, video/3gp, video/avi, video/mp4, video/flv, video/mpeg"
+                    class="custom-upload-btn" multiple />
+                </div>
+                <div class="d-flex my-4 flex-wrap justify-content-center" *ngIf="Upfile">
+                    <ng-container *ngFor="let addedFile of addedFiles; let indx = index">
+                      <div class="post-img mr-2 mb-3" *ngIf="addedFile">
+                        <img [src]="addedFile.fileData" alt="Post" class="thumb-img img-fluid" />
+                        <img src="./assets/images/remove-post.svg" (click)="removeFile(indx)" alt="Remove" class="remove" />
+                        <div class="upload-progress" *ngIf="addedFile.showProgressBar">
+                          <progressbar [value]="addedFile.progressPercent" type="warning" [striped]="true"></progressbar>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+              </div>
+        </div>
+    </div>
+</div>
